@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Movie } from '../movie';
+import { MovieService } from '../movie.service';
 
 @Component({
   selector: 'movies',
@@ -7,13 +8,22 @@ import { Movie } from '../movie';
 })
 export class MoviesComponent {
   title = 'Movie List';
+  movies: Movie[];
+  selectedMovie: Movie;
 
-  movie: Movie = {
-    id: 1,
-    name: 'The Shawshank Redemption',
-  };
+  constructor(private movieService: MovieService) {}
 
-  getTitle() {
-    return this.title;
+  ngOnInit(): void {
+    this.getMovies();
+  }
+
+  onSelect(movie: Movie): void {
+    this.selectedMovie = movie;
+  }
+
+  getMovies(): void {
+    this.movieService.getMovies().subscribe((movies) => {
+      this.movies = movies;
+    });
   }
 }
