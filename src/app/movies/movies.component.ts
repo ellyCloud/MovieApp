@@ -10,7 +10,7 @@ export class MoviesComponent {
 
   movie: Movie = {
     id: 1,
-    name: 'The Shawshank Redemption ',
+    name: 'The Shawshank Redemption',
   };
 
   getTitle() {
